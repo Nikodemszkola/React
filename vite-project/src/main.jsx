@@ -7,7 +7,8 @@ createRoot(document.getElementById('root')).render(
 <>
     <h1>Kursy Online</h1>
    <div class="przegladaj">Przeglądaj</div>
-   <div id="menu"></div>
+   <div class="menu"></div>
+
 </>
 )
 

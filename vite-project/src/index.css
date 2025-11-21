@@ -11,3 +11,18 @@ h1{
     color:purple;
     cursor:pointer;
 }
+.przegladaj:hover+.menu{
+    opacity: 100%;
+}
+.menu{
+    width: 150px;
+    height: 300px;
+    position: absolute;
+    left: 100px;
+    border-radius: 10px;
+    background-color: rgb(146, 152, 156);
+    opacity: 0%;
+}
+.menu:hover{
+    opacity: 100%;
+}
