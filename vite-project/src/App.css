@@ -3,40 +3,52 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  align-content: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.courseCard {
+  width: 350px;
+  padding: 15px;
+  margin: 10px;
+  border: 1px solid gainsboro;
+  border-radius: 15px;
+  background-color:aliceblue;
+  float: left;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.courseCardImageDiv {
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.courseCardImage{
+  width: 100%;
+  border-radius: 15px;
 }
 
-.card {
-  padding: 2em;
+.courseCardTitle{
+  width: 100%;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: larger;
 }
 
-.read-the-docs {
-  color: #888;
+.courseCardDescription{
+  width: 100%;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.couseCardPrice{
+  float: left;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.courseCardAddCartButton{
+  float:right;
+  padding: 7px;
+  background-color: whitesmoke;
+  border: 2px solid gainsboro;
+  border-radius: 100px;
 }

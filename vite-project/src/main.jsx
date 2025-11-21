@@ -5,10 +5,12 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
 <>
-    <h1>Kursy Online</h1>
-   <div class="przegladaj">Przeglądaj</div>
-   <div class="menu"></div>
-
+    <header>
+        <h1>Kursy Online</h1>
+        <div class="przegladaj">Przeglądaj</div>
+        <div class="menu"></div>
+    </header>
+    <App/>
 </>
 )
 
