@@ -1,0 +1,183 @@
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Rozrzuca elementy na boki */
+  align-items: center; /* Centruje elementy w pionie */
+  padding: 0.8rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky; /* Pasek przyklei się do góry przy scrollowaniu */
+  top: 0;
+  z-index: 1000; /* Pasek zawsze na wierzchu */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* --- LOGO --- */
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #333;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.logo-highlight {
+  color: var(--primary-color, #007bff); /* Używa zmiennej z App.css lub domyślnego koloru */
+}
+
+/* --- WYSZUKIWARKA --- */
+.navbar-center {
+  flex: 1; /* Zajmuje dostępną przestrzeń */
+  display: flex;
+  justify-content: center; /* Centruje wyszukiwarkę na środku paska */
+  margin: 0 20px;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 45px 10px 20px; /* Miejsce na tekst i ikonę po prawej */
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s;
+  box-sizing: border-box; /* Ważne, żeby padding nie powiększał inputa */
+}
+
+.search-input:focus {
+  background-color: #fff;
+  border-color: var(--primary-color, #007bff);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.search-btn:hover {
+  color: var(--primary-color, #007bff);
+}
+
+/* --- PRZYCISKI (PRAWA STRONA) --- */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-btn {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+/* Przycisk Koszyka */
+.cart-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #555;
+}
+
+.cart-btn:hover {
+  color: #000;
+}
+
+/* Kontener na przyciski logowania */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Zaloguj się (Styl "Outline") */
+.login-btn {
+  background-color: transparent;
+  border: 1px solid #333;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: #333;
+}
+
+.login-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Zarejestruj się (Styl "Filled") */
+.register-btn {
+  background-color: #333;
+  border: 1px solid #333;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.register-btn:hover {
+  background-color: #555;
+  border-color: #555;
+}
+
+/* --- Responsywność dla małych ekranów --- */
+@media (max-width: 768px) {
+  .cart-text {
+    display: none; /* Ukryj napis "Koszyk" na małych ekranach, zostaw ikonę */
+  }
+  
+  .navbar-center {
+    display: none; /* Na telefonach często chowa się wyszukiwarkę pod lupką, na razie ją ukryjemy dla prostoty */
+  }
+}
+
+/* Aby pozycjonowanie absolutne badge'a działało względem przycisku */
+.cart-btn {
+  position: relative; 
+}
+
+.cart-badge {
+  position: absolute;
+  top: -10px;    /* Przesuń trochę do góry */
+  right: -12px;  /* Przesuń trochę w prawo */
+  background-color: #ff4757; /* Czerwony kolor */
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  height: 18px;
+  min-width: 10px; /* Żeby kółko nie spłaszczyło się przy 1 cyfrze */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Idealne kółko */
+  border: 2px solid #fff; /* Biała obwódka oddzielająca od ikony */
+  padding: 0 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Fajna animacja pojawiania się */
+@keyframes popIn {
+  from {
+    transform: scale(0.7);
+  }
+  to {
+    transform: scale(1);
+  }
+}

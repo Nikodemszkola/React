@@ -1,54 +1,148 @@
-#root {
-  max-width: 1280px;
+:root {
+  --primary-color: #007bff; /* Niebieski akcent */
+  --bg-color: #f9f9f9;
+  --card-bg: #ffffff;
+  --text-color: #333;
+  --text-secondary: #666;
+  --border-radius: 12px;
+}
+
+body {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+}
+
+/* Kontener główny aplikacji */
+.app-container {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+h1.main-title {
   text-align: center;
-  align-content: center;
+  margin-bottom: 2rem;
 }
 
-.courseCard {
-  width: 350px;
-  padding: 15px;
-  margin: 10px;
-  border: 1px solid gainsboro;
-  border-radius: 15px;
-  background-color:aliceblue;
-  float: left;
+/* Siatka kursów */
+.courses-grid {
+  display: grid;
+  /* Responsywność */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 2rem;
+  justify-items: center;
 }
 
-.courseCardImageDiv {
+/* --- Wygląd Karty Kursu --- */
+.course-card {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  max-width: 380px;
+  background-color: var(--card-bg);
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-.courseCardImage{
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.course-image-wrapper {
   width: 100%;
-  border-radius: 15px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
 }
 
-.courseCardTitle{
+.course-image {
   width: 100%;
-  text-align: left;
-  margin-top: 10px;
-  margin-bottom: 0px;
-  font-size: larger;
+  height: 100%;
+  object-fit: cover;
 }
 
-.courseCardDescription{
-  width: 100%;
-  text-align: left;
-  margin-top: 10px;
-}
-
-.couseCardPrice{
-  float: left;
-  font-size: larger;
+.course-category {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: bold;
+  color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.courseCardAddCartButton{
-  float:right;
-  padding: 7px;
-  background-color: whitesmoke;
-  border: 2px solid gainsboro;
-  border-radius: 100px;
+.course-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.course-title {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.course-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.course-footer {
+  margin-top: auto; /* Wypycha stopkę na sam dół karty */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.course-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.add-to-cart-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Styl dla zablokowanego przycisku */
+.add-to-cart-btn:disabled,
+.add-to-cart-btn.btn-disabled {
+  background-color: #cccccc; /* Szary kolor */
+  color: #666666; /* Ciemniejszy szary tekst */
+  cursor: default; /* Kursor nie zmienia się w rączkę */
+  border: 1px solid #bbbbbb;
+  transform: none !important; /* Blokujemy efekt uniesienia/powiększenia */
+  box-shadow: none !important;
+}
+
+/* Upewniamy się, że po najechaniu myszką nic się nie zmienia */
+.add-to-cart-btn:disabled:hover {
+  background-color: #cccccc;
 }
