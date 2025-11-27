@@ -14,6 +14,9 @@ function Navbar({ onSearch, cartCount }) {
         <Link to="/" className="navbar-logo">
           Kursy<span className="logo-highlight">Dev</span>
         </Link>
+        <button className="nav-btn browse-btn">
+          Przeglądaj
+        </button>
       </div>
 
       <div className="navbar-center">

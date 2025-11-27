@@ -136,6 +136,19 @@
   border-color: #555;
 }
 
+.browse-btn {
+  background-color: transparent;
+  border: 1px solid #333;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: #333;
+  margin-left: 15px;
+}
+
+.browse-btn:hover {
+  background-color: #f0f0f0;
+}
+
 /* --- Responsywność dla małych ekranów --- */
 @media (max-width: 768px) {
   .cart-text {
