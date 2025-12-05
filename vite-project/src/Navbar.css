@@ -10,7 +10,7 @@
   z-index: 1000; /* Pasek zawsze na wierzchu */
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-
+ 
 /* --- LOGO --- */
 .navbar-logo {
   font-size: 1.5rem;
@@ -19,11 +19,11 @@
   text-decoration: none;
   letter-spacing: -0.5px;
 }
-
+ 
 .logo-highlight {
   color: var(--primary-color, #007bff); /* Używa zmiennej z App.css lub domyślnego koloru */
 }
-
+ 
 /* --- WYSZUKIWARKA --- */
 .navbar-center {
   flex: 1; /* Zajmuje dostępną przestrzeń */
@@ -31,13 +31,13 @@
   justify-content: center; /* Centruje wyszukiwarkę na środku paska */
   margin: 0 20px;
 }
-
+ 
 .search-box {
   position: relative;
   width: 100%;
   max-width: 500px;
 }
-
+ 
 .search-input {
   width: 100%;
   padding: 10px 45px 10px 20px; /* Miejsce na tekst i ikonę po prawej */
@@ -49,13 +49,13 @@
   transition: all 0.2s;
   box-sizing: border-box; /* Ważne, żeby padding nie powiększał inputa */
 }
-
+ 
 .search-input:focus {
   background-color: #fff;
   border-color: var(--primary-color, #007bff);
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
-
+ 
 .search-btn {
   position: absolute;
   right: 5px;
@@ -69,18 +69,18 @@
   display: flex;
   align-items: center;
 }
-
+ 
 .search-btn:hover {
   color: var(--primary-color, #007bff);
 }
-
+ 
 /* --- PRZYCISKI (PRAWA STRONA) --- */
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-
+ 
 .nav-btn {
   cursor: pointer;
   font-family: inherit;
@@ -88,7 +88,7 @@
   font-weight: 600;
   transition: all 0.2s;
 }
-
+ 
 /* Przycisk Koszyka */
 .cart-btn {
   background: none;
@@ -98,17 +98,17 @@
   gap: 8px;
   color: #555;
 }
-
+ 
 .cart-btn:hover {
   color: #000;
 }
-
+ 
 /* Kontener na przyciski logowania */
 .auth-buttons {
   display: flex;
   gap: 10px;
 }
-
+ 
 /* Zaloguj się (Styl "Outline") */
 .login-btn {
   background-color: transparent;
@@ -117,11 +117,11 @@
   border-radius: 4px;
   color: #333;
 }
-
+ 
 .login-btn:hover {
   background-color: #f0f0f0;
 }
-
+ 
 /* Zarejestruj się (Styl "Filled") */
 .register-btn {
   background-color: #333;
@@ -130,12 +130,12 @@
   border-radius: 4px;
   color: #fff;
 }
-
+ 
 .register-btn:hover {
   background-color: #555;
   border-color: #555;
 }
-
+ 
 .browse-btn {
   background-color: transparent;
   border: 1px solid #333;
@@ -144,27 +144,27 @@
   color: #333;
   margin-left: 15px;
 }
-
+ 
 .browse-btn:hover {
   background-color: #f0f0f0;
 }
-
+ 
 /* --- Responsywność dla małych ekranów --- */
 @media (max-width: 768px) {
   .cart-text {
     display: none; /* Ukryj napis "Koszyk" na małych ekranach, zostaw ikonę */
   }
-  
+ 
   .navbar-center {
     display: none; /* Na telefonach często chowa się wyszukiwarkę pod lupką, na razie ją ukryjemy dla prostoty */
   }
 }
-
+ 
 /* Aby pozycjonowanie absolutne badge'a działało względem przycisku */
 .cart-btn {
-  position: relative; 
+  position: relative;
 }
-
+ 
 .cart-badge {
   position: absolute;
   top: -10px;    /* Przesuń trochę do góry */
@@ -184,7 +184,7 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
+ 
 /* Fajna animacja pojawiania się */
 @keyframes popIn {
   from {
@@ -194,3 +194,113 @@
     transform: scale(1);
   }
 }
+ 
+/*---------------------------style kategorii--------------------------*/
+/* --- Rozwijane menu dla kategorii --- */
+
+  .navbar-left {
+    display: flex;
+    align-items: center;  /* wyrównanie pionowe */
+    gap: 15px;            /* odstęp między logo a przyciskiem */
+    position: relative;
+  }
+ 
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 57%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 250px;
+    padding: 10px 0;
+  }
+ 
+  .category-list {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+  }
+ 
+  .category-list li {
+    padding: 8px;
+    cursor: pointer;
+  }
+ 
+  .category-list a {
+    text-decoration: none;
+    color: #333;
+  }
+ 
+  .category-list li:hover {
+    background-color: #f0f0f0;
+  }
+ 
+  .subcategory-dropdown {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #fff;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-left: 10px;
+  }
+ 
+  .subcategory-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+  }
+ 
+  .subcategory-dropdown li {
+    padding: 8px;
+    cursor: pointer;
+  }
+ 
+  .subcategory-dropdown a {
+    text-decoration: none;
+  }
+ 
+  .subcategory-dropdown li:hover {
+    background-color: #f0f0f0;
+  }
+ 
+
+ 
+  .browse-wrapper {
+    position: relative;
+    margin-left: 15px;
+  }
+
+ 
+  .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+ 
+  .category-list li {
+    padding: 10px 15px;
+    cursor: pointer;
+    position: relative;
+  }
+ 
+  .category-list li:hover {
+    background: #f5f5f5;
+  }
+ 
+  .subcategory-dropdown {
+    position: absolute;
+    top: 0;
+    left: 220px;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    z-index: 3000;
+    min-width: 220px;
+  }
+

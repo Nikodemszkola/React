@@ -81,6 +81,23 @@ h1.main-title {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.course-subcategories {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.course-sub{
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-right: 5px;
+}
+
 .course-content {
   padding: 1.5rem;
   display: flex;

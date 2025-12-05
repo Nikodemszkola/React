@@ -1,6 +1,7 @@
 import React from 'react';
 
-function CourseCard({ image, title, description, price, category, onAddToCart, isInCart }) {
+function CourseCard({ image, title, description, price, category, subcategories, onAddToCart, isInCart })
+ {
   return (
     <article className='course-card'>
       <div className='course-image-wrapper'>
@@ -11,6 +12,17 @@ function CourseCard({ image, title, description, price, category, onAddToCart, i
             onError={(e) => {e.target.src = 'https://bliskiepodroze.frysztak.pl/wp-content/uploads/2019/07/brak-zdjecia.png'}}
         />
         {category && <span className='course-category'>{category}</span>}
+
+        {subcategories && (
+          <div className="course-subcategories">
+            {subcategories.map((sub, i) => (
+              <span key={i} className="course-sub">
+                {sub}
+              </span>
+            ))}
+          </div>
+        )}
+        
       </div>
       
       <div className='course-content'>
