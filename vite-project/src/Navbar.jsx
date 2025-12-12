@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar({ onSearch, cartCount, categories }) {
+function Navbar({ onSearch, cartCount, categories, user }) {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
@@ -122,15 +122,21 @@ function Navbar({ onSearch, cartCount, categories }) {
           {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
         </Link>
 
-        <div className="auth-buttons">
-          <Link to="/logowanie">
-            <button className="nav-btn login-btn">Zaloguj się</button>
-          </Link>
+        {user ? (
+          <div className="nav-user">
+            <img src="/avatar.png" alt="User" />
+          </div>
 
-          <Link to="/rejestracja">
-            <button className="nav-btn register-btn">Zarejestruj się</button>
-          </Link>
-        </div>
+        ) : (
+          <div className="auth-buttons">
+            <Link to="/logowanie">
+              <button className="nav-btn login-btn">Zaloguj się</button>
+            </Link>
+            <Link to="/rejestracja">
+              <button className="nav-btn register-btn">Zarejestruj się</button>
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );
