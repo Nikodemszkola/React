@@ -5,16 +5,22 @@ import './Navbar.css';
 function Navbar({ onSearch, cartCount, categories, user }) {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
-
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const location = useLocation();
+
 
   useEffect(() => {
     setIsHovered(false);
     setHoveredCategory(null);
+    setDropdownVisible(false); // Zamyka dropdown po zmianie ścieżki
   }, [location.pathname]);
 
   const handleInputChange = (e) => {
     onSearch(e.target.value);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible); // Przełącza widoczność menu
   };
 
   return (
@@ -124,9 +130,22 @@ function Navbar({ onSearch, cartCount, categories, user }) {
 
         {user ? (
           <div className="nav-user">
-            <img src="/avatar.png" alt="User" />
+            <img
+              src="/avatar.png"
+              alt="User"
+              onClick={toggleDropdown} // Obsługuje kliknięcie na avatar
+            />
+            {dropdownVisible && (
+              <div className="user-dropdown">
+                <ul>
+                  <li><Link to="/moje-kursy">Moje kursy</Link></li>
+                  <li><Link to="/platnosci">Płatności</Link></li>
+                  <li><Link to="/ustawienia">Ustawienia konta</Link></li>
+                  <li><button className="logout-btn" onClick={() => { /* Dodaj logikę wylogowywania */ }}>Wyloguj</button></li>
+                </ul>
+              </div>
+            )}
           </div>
-
         ) : (
           <div className="auth-buttons">
             <Link to="/logowanie">

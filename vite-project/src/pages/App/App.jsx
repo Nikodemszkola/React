@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
-import CourseCard from './CourseCard';
-import CartPage from './CartPage';
-import Navbar from './Navbar';
-import LoginPage from './LoginPage';
-import RegisterPage from './RegisterPage.jsx';
+import CourseCard from './components/CourseCard.jsx';
+import CartPage from '../Cart/CartPage.jsx';
+import Navbar from '../Navbar/Navbar.jsx';
+import LoginPage from '../Authentication/LoginPage.jsx';
+import RegisterPage from '../Authentication/RegisterPage.jsx';
 
 function App() {
 
