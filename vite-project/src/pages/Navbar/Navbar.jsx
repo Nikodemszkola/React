@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
@@ -8,19 +8,35 @@ function Navbar({ onSearch, cartCount, categories, user }) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const location = useLocation();
 
+  const dropdownRef = useRef(null);
 
+  // Zamykaj dropdown po zmianie strony
   useEffect(() => {
     setIsHovered(false);
     setHoveredCategory(null);
-    setDropdownVisible(false); // Zamyka dropdown po zmianie ścieżki
+    setDropdownVisible(false);
   }, [location.pathname]);
+
+  // Zamykaj dropdown po kliknięciu poza nim
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownVisible(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleInputChange = (e) => {
     onSearch(e.target.value);
   };
 
   const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible); // Przełącza widoczność menu
+    setDropdownVisible(!dropdownVisible);
   };
 
   return (
@@ -41,28 +57,24 @@ function Navbar({ onSearch, cartCount, categories, user }) {
             <div className="dropdown">
               <ul className="category-list">
                 {categories.map((category) => (
-                  <Link to={`/categories/${category.name.toLowerCase()}`}>
+                  <Link to={`/categories/${category.name.toLowerCase()}`} key={category.id}>
                     <li
-                      key={category.id}
                       onMouseEnter={() => setHoveredCategory(category)}
                       onMouseLeave={() => setHoveredCategory(null)}
                     >
-
-                        {category.name}
-
+                      {category.name}
 
                       {hoveredCategory === category &&
                         category.subcategories.length > 0 && (
                           <div className="subcategory-dropdown">
                             <ul>
                               {category.subcategories.map((subcategory) => (
-                                <Link to={`/categories/${category.name.toLowerCase()}/${subcategory.id}`}>
-                                  <li key={subcategory.id}>
-
-                                    {subcategory.name}
-
-                                  </li>
-                                  </Link>
+                                <Link
+                                  to={`/categories/${category.name.toLowerCase()}/${subcategory.id}`}
+                                  key={subcategory.id}
+                                >
+                                  <li>{subcategory.name}</li>
+                                </Link>
                               ))}
                             </ul>
                           </div>
@@ -129,19 +141,24 @@ function Navbar({ onSearch, cartCount, categories, user }) {
         </Link>
 
         {user ? (
-          <div className="nav-user">
+          <div className="nav-user" ref={dropdownRef}>
             <img
               src="/avatar.png"
               alt="User"
-              onClick={toggleDropdown} // Obsługuje kliknięcie na avatar
+              onClick={toggleDropdown}
             />
+
             {dropdownVisible && (
               <div className="user-dropdown">
                 <ul>
                   <li><Link to="/moje-kursy">Moje kursy</Link></li>
                   <li><Link to="/platnosci">Płatności</Link></li>
                   <li><Link to="/ustawienia">Ustawienia konta</Link></li>
-                  <li><button className="logout-btn" onClick={() => { /* Dodaj logikę wylogowywania */ }}>Wyloguj</button></li>
+                  <li>
+                    <button className="logout-btn">
+                      Wyloguj
+                    </button>
+                  </li>
                 </ul>
               </div>
             )}

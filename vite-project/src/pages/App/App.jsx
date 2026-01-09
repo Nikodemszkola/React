@@ -6,6 +6,7 @@ import CartPage from '../Cart/CartPage.jsx';
 import Navbar from '../Navbar/Navbar.jsx';
 import LoginPage from '../Authentication/LoginPage.jsx';
 import RegisterPage from '../Authentication/RegisterPage.jsx';
+import MyCoursesPage from '../MyCourses/MyCoursesPage.jsx';
 
 function App() {
 
@@ -170,6 +171,10 @@ function App() {
               <h1 className='main-title'>Dostępne Kursy</h1>
             </header>
 
+            <div className='filters'>
+              Filtry:
+            </div>
+
             <main className='courses-grid'>
               {filteredCourses.map(course => (
                 <CourseCard
@@ -202,6 +207,10 @@ function App() {
 
         <Route path="/rejestracja" element={
           <RegisterPage onSwitchToLogin={() => navigate('/logowanie')} />
+        } />
+
+        <Route path="/moje-kursy" element={
+          <MyCoursesPage/>
         } />
 
         <Route path="/categories/:categoryName" element={
