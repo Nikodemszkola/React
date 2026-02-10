@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CartItem from './components/CartItem';
 import './CartPage.css';
 
+import { AuthContext } from '../../context/AuthContext.jsx';
+import { createCheckoutSession } from '../../api.js';
+
 function CartPage({ cartItems, onRemoveFromCart, onBackToShop }) {
 
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const { user, token } = useContext(AuthContext);
+
+  const totalPrice = cartItems.reduce((sum, item) => sum + Number(item.price), 0);
 
   const formatPrice = (price) =>
     new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' }).format(price);
+
+  const handleCheckout = async () => {
+    if (!user) {
+      alert("Musisz być zalogowany, aby przejść do płatności.");
+      return;
+    }
+
+    if (cartItems.length === 0) return;
+
+    try {
+      const data = await createCheckoutSession(user.id, token);
+
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        console.error("Błąd tworzenia sesji płatności:", data);
+      }
+    } catch (err) {
+      console.error("Błąd podczas przejścia do płatności:", err);
+    }
+  };
 
   return (
     <div className="cart-page-container">
@@ -41,7 +67,9 @@ function CartPage({ cartItems, onRemoveFromCart, onBackToShop }) {
               <span>Do zapłaty:</span>
               <span className="total-price">{formatPrice(totalPrice)}</span>
             </div>
-            <button className="checkout-btn">Przejdź do płatności</button>
+            <button className="checkout-btn" onClick={handleCheckout}>
+              Przejdź do płatności
+            </button>
           </div>
 
         </div>

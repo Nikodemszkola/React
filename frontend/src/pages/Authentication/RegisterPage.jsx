@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './Auth.css';
 
+import { registerRequest } from '../../api.js';
+import { AuthContext } from '../../context/AuthContext.jsx';
+import { useNavigate } from 'react-router-dom';
+
 function RegisterPage({ onSwitchToLogin }) {
-  const handleSubmit = (e) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Rejestracja w trakcie implementacji...');
+
+    const response = await registerRequest(name, email, password);
+
+    if (!response || response.error) {
+      alert(response?.error || "Błąd rejestracji");
+      return;
+    }
+
+    const { token, user } = response;
+
+    login(token, user);
+
+    navigate("/");
   };
 
   return (
@@ -20,6 +43,8 @@ function RegisterPage({ onSwitchToLogin }) {
               id="name" 
               className="form-input" 
               required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -30,6 +55,8 @@ function RegisterPage({ onSwitchToLogin }) {
               id="email" 
               className="form-input" 
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -40,6 +67,8 @@ function RegisterPage({ onSwitchToLogin }) {
               id="password" 
               className="form-input" 
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

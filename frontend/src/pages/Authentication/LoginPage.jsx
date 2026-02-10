@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './Auth.css';
 
+import { AuthContext } from '../../context/AuthContext.jsx';
+import { loginRequest } from '../../api.js';
+import { useNavigate } from 'react-router-dom';
+
 function LoginPage({ onSwitchToRegister }) {
-  const handleSubmit = (e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Logowanie w trakcie implementacji...');
+
+    const response = await loginRequest(email, password);
+
+    if (!response || response.error) {
+      alert(response?.error || "Błąd logowania");
+      return;
+    }
+
+    const { token, user } = response;
+
+    login(token, user);
+
+    // MIGRACJA KOSZYKA
+    if (window.migrateCart) {
+      await window.migrateCart();
+    }
+
+    navigate("/");
   };
 
   return (
@@ -20,6 +47,8 @@ function LoginPage({ onSwitchToRegister }) {
               id="email" 
               className="form-input" 
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -30,6 +59,8 @@ function LoginPage({ onSwitchToRegister }) {
               id="password" 
               className="form-input" 
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

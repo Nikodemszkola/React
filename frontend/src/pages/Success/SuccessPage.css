@@ -1,0 +1,47 @@
+.success-container {
+  max-width: 600px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.success-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #2ecc71;
+}
+
+.success-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.success-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #3498db;
+  color: white;
+  transition: 0.2s;
+}
+
+.success-btn:hover {
+  background: #2980b9;
+}
+
+.success-btn.secondary {
+  background: #bdc3c7;
+  color: #2c3e50;
+}
+
+.success-btn.secondary:hover {
+  background: #aeb6bf;
+}

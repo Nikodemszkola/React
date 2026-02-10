@@ -1,17 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar({ onSearch, cartCount, categories, user }) {
+import { AuthContext } from '../../context/AuthContext.jsx';
+
+function Navbar({ onSearch, cartCount, categories }) {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const location = useLocation();
 
+  const { user, logout } = useContext(AuthContext);
+
   const dropdownRef = useRef(null);
 
   // Zamykaj dropdown po zmianie strony
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setIsHovered(false);
     setHoveredCategory(null);
     setDropdownVisible(false);
@@ -155,7 +160,7 @@ function Navbar({ onSearch, cartCount, categories, user }) {
                   <li><Link to="/platnosci">Płatności</Link></li>
                   <li><Link to="/ustawienia">Ustawienia konta</Link></li>
                   <li>
-                    <button className="logout-btn">
+                    <button className="logout-btn" onClick={logout}>
                       Wyloguj
                     </button>
                   </li>
