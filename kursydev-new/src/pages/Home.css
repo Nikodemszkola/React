@@ -1,0 +1,47 @@
+.home {
+  display: grid;
+  gap: 28px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin: 0 0 8px;
+}
+
+.hero p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.hero-card {
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.state {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+}

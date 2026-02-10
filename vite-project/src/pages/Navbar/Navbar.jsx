@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar({ onSearch, cartCount, categories, user }) {
+function Navbar({ onSearch, cartCount, categories, user, onLogout }) {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -10,14 +10,12 @@ function Navbar({ onSearch, cartCount, categories, user }) {
 
   const dropdownRef = useRef(null);
 
-  // Zamykaj dropdown po zmianie strony
   useEffect(() => {
     setIsHovered(false);
     setHoveredCategory(null);
     setDropdownVisible(false);
   }, [location.pathname]);
 
-  // Zamykaj dropdown po kliknięciu poza nim
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -51,7 +49,7 @@ function Navbar({ onSearch, cartCount, categories, user }) {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          Przeglądaj
+          Przegladaj
 
           {isHovered && (
             <div className="dropdown">
@@ -92,7 +90,7 @@ function Navbar({ onSearch, cartCount, categories, user }) {
         <div className="search-box">
           <input
             type="text"
-            placeholder="Czego chcesz się nauczyć?"
+            placeholder="Czego chcesz sie nauczyc?"
             className="search-input"
             onChange={handleInputChange}
           />
@@ -152,10 +150,11 @@ function Navbar({ onSearch, cartCount, categories, user }) {
               <div className="user-dropdown">
                 <ul>
                   <li><Link to="/moje-kursy">Moje kursy</Link></li>
-                  <li><Link to="/platnosci">Płatności</Link></li>
+                  <li><Link to="/platnosci">Platnosci</Link></li>
                   <li><Link to="/ustawienia">Ustawienia konta</Link></li>
+                  <li className="user-name">{user.name} {user.surname}</li>
                   <li>
-                    <button className="logout-btn">
+                    <button className="logout-btn" onClick={onLogout}>
                       Wyloguj
                     </button>
                   </li>
@@ -166,10 +165,10 @@ function Navbar({ onSearch, cartCount, categories, user }) {
         ) : (
           <div className="auth-buttons">
             <Link to="/logowanie">
-              <button className="nav-btn login-btn">Zaloguj się</button>
+              <button className="nav-btn login-btn">Zaloguj sie</button>
             </Link>
             <Link to="/rejestracja">
-              <button className="nav-btn register-btn">Zarejestruj się</button>
+              <button className="nav-btn register-btn">Zarejestruj sie</button>
             </Link>
           </div>
         )}

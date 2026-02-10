@@ -89,3 +89,8 @@
   text-decoration: underline;
   padding: 0 5px;
 }
+.auth-error {
+  color: #b00020;
+  font-size: 0.9rem;
+  margin: 5px 0 0;
+}

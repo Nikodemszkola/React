@@ -1,0 +1,57 @@
+OPIS BUDOWY PROJEKTU
+
+Projekt to aplikacja React uruchamiana przez Vite. Logika UI i nawigacja sa w katalogu src, a routing oparty jest o react-router-dom.
+
+STRUKTURA KATALOGOW
+
+KATALOG GLOWNY
+- package.json, package-lock.json: zaleznosci i skrypty npm.
+- vite.config.js: konfiguracja bundlera Vite.
+- index.html: punkt wejsciowy z elementem root.
+- eslint.config.js: konfiguracja linta.
+- public/: statyczne zasoby serwowane bezpośrednio.
+- node_modules/: zainstalowane zaleznosci.
+- README.md: opis projektu.
+- skrypt.js: pusty plik pomocniczy.
+
+SRC
+- main.jsx: punkt startowy React. Tworzy root i opakowuje aplikacje w BrowserRouter.
+- assets/
+  - react.svg: zasob graficzny.
+  - server.js: prosty serwer Express + MySQL (endpoint POST /users/:id/course). Nie jest podlaczony do frontendu.
+- pages/
+  - App/
+    - App.jsx: glowny widok aplikacji. Zawiera:
+      - twardo zakodowane dane kursow i kategorii.
+      - stan koszyka w localStorage.
+      - wyszukiwanie po tytule.
+      - definicje tras (Routes).
+    - App.css: style dla strony glownej.
+    - components/CourseCard.jsx: karta kursu z przyciskiem „Dodaj do koszyka”.
+  - Navbar/
+    - Navbar.jsx: pasek nawigacji, dropdown kategorii, wyszukiwarka, koszyk i menu uzytkownika.
+    - Navbar.css: style nawigacji.
+  - Cart/
+    - CartPage.jsx: widok koszyka, lista pozycji i podsumowanie.
+    - CartPage.css: style koszyka.
+    - components/CartItem.jsx: pojedyncza pozycja koszyka.
+  - Authentication/
+    - LoginPage.jsx, RegisterPage.jsx: formularze logowania i rejestracji (na razie z placeholderami).
+    - Auth.css: style dla auth.
+  - MyCourses/
+    - MyCoursesPage.jsx: widok „Moje kursy” (obecnie pusty).
+    - MyCoursesPage.css: plik stylow (pusty).
+    - components/CourseCard.jsx: osobna karta kursu dla tej sekcji.
+
+NAWIGACJA (ROUTING)
+- / : lista kursow.
+- /koszyk : koszyk.
+- /logowanie : logowanie.
+- /rejestracja : rejestracja.
+- /moje-kursy : moje kursy.
+- /categories/:categoryName oraz /categories/:categoryName/:subcategoryName : placeholdery stron kategorii.
+
+PRZEPLYW DANYCH
+- Koszyk jest przechowywany w localStorage pod kluczem "cart".
+- Navbar przekazuje wartosc wyszukiwania do App, a App filtruje liste kursow.
+- Kursy i kategorie sa zaszyte w App.jsx i przekazywane do komponentow potomnych.
